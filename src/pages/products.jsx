@@ -20,8 +20,8 @@ const ProductPage = () => {
 
   return (
     <>
-      <div className={`flex justify-center p-5 ${isDarkMode && "bg-gray-900 text-white"} `}>
-        <div className="w-full flex flex-wrap">
+      <div className={`p-5 ${isDarkMode && "bg-gray-900 text-white"} `}>
+        <div className="w-full flex flex-wrap justify-center">
           {products.length > 0 && products.map((product) => (
             <ProductCard key={product.id}>
               <ProductCard.Header image={product.image} id={product.id} />
