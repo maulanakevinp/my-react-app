@@ -5,11 +5,13 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import LoginPage from './pages/login.jsx';
 import RegisterPage from './pages/register.jsx';
 import ErrorPage from './pages/error.jsx';
-import ProductPage from './pages/products.jsx';
 import DetailProductPage from './pages/detailProduct.jsx';
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
 import Navbar from './components/Layouts/Navbar.jsx';
+import DarkModeProvider from './context/DarkMode.jsx';
+import { TotalPriceProvider } from './context/TotalPriceCOntext.jsx';
+import ProductPage from './Pages/products.jsx';
 
 const isLogin = localStorage.getItem('token') ? true : false;
 const router = createBrowserRouter([
@@ -39,8 +41,12 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      {isLogin && <Navbar />}
-      <RouterProvider router={router} />
+      <DarkModeProvider>
+        <TotalPriceProvider>
+          {isLogin && <Navbar />}
+          <RouterProvider router={router} />
+        </TotalPriceProvider>
+      </DarkModeProvider>
     </Provider>
   </StrictMode>,
 )

@@ -1,11 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../components/Fragments/ProductCard";
 import { getProduct } from "../services/product.services";
 import TableCart from "../components/Fragments/TableCart";
+import { DarkModeContext } from "../context/DarkMode";
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
-
+  const {isDarkMode} = useContext(DarkModeContext);
+  
   useEffect(() => {
     document.title = "Products";
   }, []);
@@ -18,8 +20,8 @@ const ProductPage = () => {
 
   return (
     <>
-      <div className="flex justify-center p-5">
-        <div className="w-3/4 flex flex-wrap">
+      <div className={`flex justify-center p-5 ${isDarkMode && "bg-gray-900 text-white"} `}>
+        <div className="w-full flex flex-wrap">
           {products.length > 0 && products.map((product) => (
             <ProductCard key={product.id}>
               <ProductCard.Header image={product.image} id={product.id} />
@@ -32,10 +34,6 @@ const ProductPage = () => {
               />
             </ProductCard>
           ))}
-        </div>
-        <div className="w-1/4">
-          <h1 className="text-3xl font-bold mb-2 text-blue-600">Cart</h1>
-          <TableCart products={products}/>
         </div>
       </div>
     </>

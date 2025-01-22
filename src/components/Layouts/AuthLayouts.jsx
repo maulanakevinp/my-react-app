@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 import FormLogin from "../Fragments/FormLogin";
+import { useContext } from "react";
+import { DarkModeContext } from "../../context/DarkMode";
+import ToggleDarkMode from "../Elements/Button/ToggleDarkMode";
 
-const AuthLayouts = (props) => {
-  const { children, title, type } = props;
+const AuthLayouts = ({ children, title, type }) => {
+  const {isDarkMode} = useContext(DarkModeContext);
   return (
-    <div className="flex justify-center min-h-screen items-center flex-col my-10">
+    <div className={`flex justify-center min-h-screen items-center flex-col ${isDarkMode && "bg-gray-900 text-white"}`}>
+      <ToggleDarkMode />
       <div className="w-full max-w-xs">
         <h1 className="text-3xl font-bold mb-2 text-blue-600">{title}</h1>
-        <p className="font-medium text-slate-500 mb-8">
+        <p className={`font-medium ${isDarkMode ? "text-white" : "text-slate-500"} mb-8`}>
           Welcome, Please enter your details
         </p>
         {children}

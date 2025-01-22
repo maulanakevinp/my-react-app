@@ -1,13 +1,16 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseQuantity } from "../../redux/slices/cartSlice";
+import { DarkModeContext } from "../../context/DarkMode";
+import { useTotalPrice, useTotalPriceDispatch } from "../../context/TotalPriceCOntext";
 
 export default function TableCart({ products }) {
   const cart = useSelector((state) => state.cart.data);
-  const [totalPrice, setTotalPrice] = useState(0);
   const totalPriceRow = useRef(null);
 	const dispatch = useDispatch();
-
+  const {isDarkMode} = useContext(DarkModeContext);
+  const dispatchTotalPrice = useTotalPriceDispatch();
+  const {total} = useTotalPrice();
   useEffect(() => {
     if (products.length > 0) {
       if (cart.length > 0) {
@@ -15,11 +18,21 @@ export default function TableCart({ products }) {
           const product = products.find((product) => product.id === item.id);
           return acc + product.price * 15000 * item.qty;
         }, 0);
-        setTotalPrice(sum);
+        dispatchTotalPrice({
+          type: "UPDATE",
+          payload: {
+            total: sum,
+          },
+        })
         localStorage.setItem("cart", JSON.stringify(cart));
         totalPriceRow.current.style.display = "table-row";
       } else {
-        setTotalPrice(0);
+        dispatchTotalPrice({
+          type: "UPDATE",
+          payload: {
+            total: 0,
+          },
+        })
         totalPriceRow.current.style.display = "none";
         localStorage.removeItem("cart");
       }
@@ -27,8 +40,8 @@ export default function TableCart({ products }) {
   }, [cart, products]);
 
   return (
-    <table className="w-full text-sm text-left text-gray-500">
-      <thead className="text-xs text-gray-700 uppercase">
+    <table className={`w-full text-sm text-left ${isDarkMode ? "text-white" : "text-gray-500"}`}>
+      <thead className={`text-xs ${isDarkMode ? "text-white" : "text-gray-700"} uppercase`}>
         <tr>
           <th scope="col" className="py-1">
             Product
@@ -53,7 +66,7 @@ export default function TableCart({ products }) {
               <tr key={item.id}>
                 <th
                   scope="row"
-                  className="py-1 font-medium text-gray-900 whitespace-nowrap"
+                  className={`py-1 font-medium ${isDarkMode ? "text-white" : "text-gray-900"} whitespace-nowrap`}
                 >
                   {product.title.length > 20
                     ? product.title.slice(0, 20) + "..."
@@ -82,12 +95,12 @@ export default function TableCart({ products }) {
         <tr ref={totalPriceRow}>
           <td
             colSpan="3"
-            className="py-1 text-end font-medium text-gray-900 whitespace-nowrap"
+            className={`py-1 text-end font-medium ${isDarkMode ? "text-white" : "text-gray-900"} whitespace-nowrap`}
           >
             Total Price
           </td>
           <td className="py-1 text-end">
-            {Intl.NumberFormat("id-ID").format(totalPrice)}
+            {Intl.NumberFormat("id-ID").format(total)}
           </td>
           <td className="py-1 text-end"></td>
         </tr>
