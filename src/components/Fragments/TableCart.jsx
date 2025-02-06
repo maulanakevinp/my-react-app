@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, decreaseQuantity } from "../../redux/slices/cartSlice";
 import { DarkModeContext } from "../../context/DarkMode";
-import { useTotalPrice, useTotalPriceDispatch } from "../../context/TotalPriceCOntext";
+import { useTotalPrice, useTotalPriceDispatch } from "../../context/TotalPriceContext";
 
 export default function TableCart({ products }) {
   const cart = useSelector((state) => state.cart.data);

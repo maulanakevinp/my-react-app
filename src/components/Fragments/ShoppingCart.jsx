@@ -10,7 +10,7 @@ import {
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { getProduct } from "../../services/product.services";
 import { useDispatch, useSelector } from "react-redux";
-import { useTotalPrice, useTotalPriceDispatch } from "../../context/TotalPriceCOntext";
+import { useTotalPrice, useTotalPriceDispatch } from "../../context/TotalPriceContext";
 import { addToCart, decreaseQuantity } from "../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 

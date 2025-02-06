@@ -3,7 +3,7 @@ import { useLogin } from "../../hooks/useLogin";
 import Button from "../Elements/Button";
 import { useSelector } from "react-redux";
 import ToggleDarkMode from "../Elements/Button/ToggleDarkMode";
-import { useTotalPrice } from "../../context/TotalPriceCOntext";
+import { useTotalPrice } from "../../context/TotalPriceContext";
 import ShoppingCart from "../Fragments/ShoppingCart";
 
 export default function Navbar() {
