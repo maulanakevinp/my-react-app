@@ -11,7 +11,7 @@ import store from './redux/store.js';
 import Navbar from './components/Layouts/Navbar.jsx';
 import DarkModeProvider from './context/DarkMode.jsx';
 import { TotalPriceProvider } from './context/TotalPriceContext.jsx';
-import ProductPage from './Pages/products.jsx';
+import ProductPage from './pages/products.jsx';
 
 const isLogin = localStorage.getItem('token') ? true : false;
 const router = createBrowserRouter([
