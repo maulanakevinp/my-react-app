@@ -12,32 +12,9 @@ import Navbar from './components/Layouts/Navbar.jsx';
 import DarkModeProvider from './context/DarkMode.jsx';
 import { TotalPriceProvider } from './context/TotalPriceContext.jsx';
 import ProductPage from './pages/products.jsx';
+import { router } from './router.jsx';
 
 const isLogin = localStorage.getItem('token') ? true : false;
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Hello World</div>,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/login",
-    element: isLogin ? <Navigate to="/products"/> : <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: isLogin ? <Navigate to="/products"/> : <RegisterPage />,
-  },
-  {
-    path: "/products",
-    element: isLogin ? <ProductPage /> : <Navigate to="/login"/>,
-  },
-  {
-    path: "/products/:id",
-    element: isLogin ? <DetailProductPage /> : <Navigate to="/login"/>,
-  }
-]);
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
