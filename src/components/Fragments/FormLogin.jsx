@@ -1,7 +1,8 @@
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../Elements/Button";
 import InputForm from "../Elements/Input";
 import { login } from "../../services/auth.services";
+import { useNavigate } from "react-router-dom";
 
 const FormLogin = () => {
   const [invalidUsername, setInvalidUsername] = useState(false);
@@ -27,7 +28,7 @@ const FormLogin = () => {
       (status, data) => {
         if (status) {
           localStorage.setItem("token", data.token);
-          window.location.href = "/products";
+          window.location.href = "/my-react-app/products";
         } else {
           setFailedLogin(data);
         }

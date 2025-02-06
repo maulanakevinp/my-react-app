@@ -1,8 +1,10 @@
-import { createBrowserRouter, Navigate, RouterProvider, useNavigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LoginPage from './pages/login.jsx';
 import RegisterPage from './pages/register.jsx';
 import ErrorPage from './pages/error.jsx';
+
 import ProductPage from './pages/products.jsx';
+import DetailProductPage from './pages/detailProduct.jsx';
 
 const isLogin = localStorage.getItem('token') ? true : false;
 export const router = createBrowserRouter([
@@ -28,5 +30,5 @@ export const router = createBrowserRouter([
     element: isLogin ? <DetailProductPage /> : <Navigate to="/login"/>,
   }
 ], {
-  basename: '/my-react-app/',
+  basename: '/my-react-app',
 });
