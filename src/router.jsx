@@ -28,5 +28,5 @@ export const router = createBrowserRouter([
     element: isLogin ? <DetailProductPage /> : <Navigate to="/login"/>,
   }
 ], {
-  // basename: '/my-react-app/',
+  basename: '/my-react-app/',
 });
