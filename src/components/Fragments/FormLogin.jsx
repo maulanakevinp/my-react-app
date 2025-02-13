@@ -28,7 +28,7 @@ const FormLogin = () => {
       (status, data) => {
         if (status) {
           localStorage.setItem("token", data.token);
-          window.location.href = "/my-react-app/products";
+          window.location.href = "/products";
         } else {
           setFailedLogin(data);
         }

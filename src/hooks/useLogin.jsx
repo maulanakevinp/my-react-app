@@ -6,7 +6,7 @@ export const useLogin = () => {
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) setUsername(getUsername(token));
-        else window.location.href = "/my-react-app/login";
+        else window.location.href = "/login";
     },[]);
 
     return username;

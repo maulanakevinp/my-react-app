@@ -14,10 +14,10 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <DarkModeProvider>
-          <TotalPriceProvider>
-            {isLogin && <Navbar />}
-            <RouterProvider router={router}/>
-          </TotalPriceProvider>
+        <TotalPriceProvider>
+          {isLogin && <Navbar />}
+          <RouterProvider router={router}/>
+        </TotalPriceProvider>
       </DarkModeProvider>
     </Provider>
   </StrictMode>,
