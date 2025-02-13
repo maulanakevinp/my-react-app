@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import ToggleDarkMode from "../Elements/Button/ToggleDarkMode";
 import { useTotalPrice } from "../../context/TotalPriceContext";
 import ShoppingCart from "../Fragments/ShoppingCart";
-import { useBaseUrl } from "../../hooks/useBaseUrl";
 
 export default function Navbar() {
   const username = useLogin();
@@ -20,7 +19,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = useBaseUrl + "/login";
+    window.location.href = import.meta.env.BASE_URL + "/login";
   };
 
   return (
