@@ -3,6 +3,7 @@ import Button from "../Elements/Button";
 import InputForm from "../Elements/Input";
 import { login } from "../../services/auth.services";
 import { useNavigate } from "react-router-dom";
+import { useBaseUrl } from "../../hooks/useBaseUrl";
 
 const FormLogin = () => {
   const [invalidUsername, setInvalidUsername] = useState(false);
@@ -28,7 +29,7 @@ const FormLogin = () => {
       (status, data) => {
         if (status) {
           localStorage.setItem("token", data.token);
-          window.location.href = "/products";
+          window.location.href = useBaseUrl + "/products";
         } else {
           setFailedLogin(data);
         }
