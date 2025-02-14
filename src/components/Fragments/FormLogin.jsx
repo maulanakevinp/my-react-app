@@ -27,7 +27,7 @@ const FormLogin = () => {
       (status, data) => {
         if (status) {
           localStorage.setItem("token", data.token);
-          window.location.href = import.meta.env.BASE_URL + "/#/products";
+          location.reload();
         } else {
           setFailedLogin(data);
         }

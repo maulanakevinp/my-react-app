@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = import.meta.env.BASE_URL + "/#/login";
+    location.reload();
   };
 
   return (
